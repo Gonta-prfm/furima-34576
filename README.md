@@ -10,7 +10,7 @@
 | family_name        | string | null false               |
 | first_name         | string | null false               |
 | family_name_kana   | string | null false               |
-| first_name_kane    | string | null false               |
+| first_name_kana    | string | null false               |
 | birth_day          | date   | null false               |
 
 ### Assciation
@@ -51,7 +51,7 @@
 - belongs_to :item
 - has_one    :street_address
 
-## Street_addressesテーブル
+## street_addressesテーブル
 
 |     Culumn    |    Type    |            Option             |
 | ------------- | ---------- | ----------------------------- |
