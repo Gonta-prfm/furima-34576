@@ -9,14 +9,11 @@ class User < ApplicationRecord
     validates :birth_day
   end
   validates :password,           presence: true, 
-                                 format: {with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i, 
-                                 message: ''}
+                                 format: {with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i}
   validates :first_name, 
             :family_name,        presence: true,
-                                 format: {with: /\A[ぁ-んァ-ヶ一-龥々]+\z/,
-                                 messsage: ''}
+                                 format: {with: /\A[ぁ-んァ-ヶ一-龥々]+\z/}
   validates :first_name_kana, 
             :family_name_kana,   presence: true, 
-                                 format: {with: /\A[ァ-ンー－]+\z/,
-                                 message: ''}
+                                 format: {with: /\A[ァ-ンー－]+\z/}
 end
