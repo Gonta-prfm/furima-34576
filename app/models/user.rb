@@ -3,11 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
- 
+
+  with_options presence: true do
+    validates :nickname,           presence: true
+    validates :birth_day,          presence: true
+  end
   validates :password,           presence: true, 
                                  format: {with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i, 
                                  message: ''}
-  validates :nickname,           presence: true
   validates :first_name, 
             :family_name,        presence: true,
                                  format: {with: /\A[ぁ-んァ-ヶ一-龥々]+\z/,
@@ -16,5 +19,4 @@ class User < ApplicationRecord
             :family_name_kana,   presence: true, 
                                  format: {with: /\A[ァ-ンー－]+\z/,
                                  message: ''}
-  validates :birth_day,          presence: true
 end
