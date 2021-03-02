@@ -28,25 +28,50 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it '商品の詳細のカテゴリーが id = 1 だと登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
       it '商品の詳細の商品の状態が空だと登録できない' do
         @item.status_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
+      end
+      it '商品の詳細の商品の状態が id = 1 だと登録できない' do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
       it '配送の配送料の負担が空だと登録できない' do
         @item.shopping_charge_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shopping charge can't be blank")
       end
+      it '配送の配送料の負担 id = 1 だと登録できない' do
+        @item.shopping_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shopping charge must be other than 1")
+      end
       it '配送の発送元の地域が空だと登録できない' do
         @item.shopping_area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shopping area can't be blank")
       end
+      it '配送の発送元の地域が id = 1 だと登録できない' do
+        @item.shopping_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shopping area must be other than 1")
+      end
       it '配送の発送までの日数が空だと登録できない' do
         @item.days_to_shop_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to shop can't be blank")
+      end
+      it '配送の発送までの日数が id = 1 だと登録できない' do
+        @item.days_to_shop_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Days to shop must be other than 1")
       end
       it '商品販売価格が空だと登録できない' do
         @item.price = ''
@@ -54,12 +79,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '商品販売価格が9,999,999円以上だと登録できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
       it '商品販売価格が300円以下だと登録できない' do
-        @item.price = '200'
+        @item.price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 299")
       end
