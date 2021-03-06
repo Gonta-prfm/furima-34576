@@ -11,7 +11,7 @@ class PurchaseStreetAddress
     validates :user_id
     validates :item_id
     validates :token
-    validates :prefecture_id
+    validates :prefecture_id, numericality: { other_than: 0 }
   end
 
   def save 

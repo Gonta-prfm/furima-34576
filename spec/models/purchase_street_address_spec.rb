@@ -59,10 +59,20 @@ RSpec.describe PurchaseStreetAddress, type: :model do
           @purchase.valid?
           expect(@purchase.errors.full_messages).to include("Postal code is invalid")
         end
+        it '郵便番号が英数字混合だと登録できない' do
+          @purchase.postal_code = '123-abc'
+          @purchase.valid?
+          expect(@purchase.errors.full_messages).to include("Postal code is invalid")
+        end
         it '都道府県が空だと登録できない' do
           @purchase.prefecture_id = ''
           @purchase.valid?
           expect(@purchase.errors.full_messages).to include("Prefecture can't be blank")
+        end
+        it '都道府県がid = 0 だと登録できない' do
+          @purchase.prefecture_id = 0
+          @purchase.valid?
+          expect(@purchase.errors.full_messages).to include("Prefecture must be other than 0")
         end
         it '市区町村が空だと登録できない' do
           @purchase.municipality = ''
@@ -91,6 +101,11 @@ RSpec.describe PurchaseStreetAddress, type: :model do
         end
         it '電話番号に「-」があると登録できない' do
           @purchase.phone_number = '123ー4567ー8912'
+          @purchase.valid?
+          expect(@purchase.errors.full_messages).to include("Phone number is invalid")
+        end
+        it '電話番号が英数字混合だと登録できない' do
+          @purchase.phone_number = '123abcd4567'
           @purchase.valid?
           expect(@purchase.errors.full_messages).to include("Phone number is invalid")
         end
