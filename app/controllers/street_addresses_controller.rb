@@ -1,0 +1,2 @@
+class StreetAddressesController < ApplicationController
+end
