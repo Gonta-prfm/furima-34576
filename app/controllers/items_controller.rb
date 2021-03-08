@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -53,7 +56,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if @item.user == current_user || @item.purchase.present?
+    unless @item.user == current_user || @item.purchase.present?
       redirect_to root_path
     end
   end
