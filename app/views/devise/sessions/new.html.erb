@@ -11,6 +11,7 @@
     <%= flash[:notice] %>
     <%= flash[:alert] %>
   </div>
+  <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">メールアドレス</label>
@@ -29,6 +30,7 @@
     <%= f.submit "ログイン" ,class:"login-red-btn" %>
   </div>
 </div>
+<% end %>
 <% end %>
 
 <%= render "shared/second-footer"%>
